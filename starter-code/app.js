@@ -4,9 +4,10 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var PORT = process.env.PORT || 4000;
 
 // How do we 'require' the candyRouter file?
-var candyRouter;
+var candyRouter = require('./candyRouter.js');
 
 app.use(bodyParser.json());
 
@@ -14,4 +15,8 @@ app.use(bodyParser.json());
 //through our candyRouter?
 //Hint: you need app.use
 
-app.listen(3000);
+app.use('/candies', candyRouter);
+
+app.listen(PORT, function(){
+    console.log("server up at 4000");
+});
